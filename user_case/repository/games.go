@@ -38,6 +38,7 @@ func (g GamesRepository) ListGames() ([]entities.ListGames, error) {
 			&row.EndGame,
 			&row.State,
 			&row.Photo,
+			&row.TypeGame,
 		)
 		list = append(list, row.ToDomain())
 	}

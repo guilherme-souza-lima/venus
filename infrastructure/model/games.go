@@ -15,6 +15,7 @@ type GamesModel struct {
 	EndGame       time.Time `gorm:"column:end_game"`
 	State         int       `gorm:"column:state"`
 	Photo         string    `gorm:"column:photo"`
+	TypeGame      int       `gorm:"column:type_game"`
 }
 
 func (ref *GamesModel) TableName() string {
@@ -32,5 +33,6 @@ func (ref GamesModel) ToDomain() entities.ListGames {
 		EndGame:       ref.EndGame,
 		State:         ref.State,
 		Photo:         ref.Photo,
+		TypeGame:      ref.TypeGame,
 	}
 }

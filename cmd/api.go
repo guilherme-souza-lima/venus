@@ -32,6 +32,9 @@ func StartHttp(ctx context.Context, containerDI *infrastructure.ContainerDI) {
 	}))
 
 	app.Get("/list/games", containerDI.GamesHandler.ListGames)
+
+	app.Get("/list/participating/:idUser/:idGame")
+
 	err := app.Listen(":8080")
 	if err != nil {
 		panic(err)

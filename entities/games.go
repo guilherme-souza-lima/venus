@@ -14,4 +14,5 @@ type ListGames struct {
 	EndGame       time.Time `json:"end_game"`
 	State         int       `json:"state"`
 	Photo         string    `json:"photo"`
+	TypeGame      int       `json:"type_game"`
 }
