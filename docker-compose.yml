@@ -1,0 +1,14 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    container_name: ssVenus_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ss_venus
+    ports:
+      - "2205:5432"
+    restart: unless-stopped
+    volumes:
+      - .data/postgres:/var/lib/postgresql/data
