@@ -11,12 +11,15 @@ import (
 )
 
 type ContainerDI struct {
-	Config          Config
-	DB              *gorm.DB
-	Migration       migrations.DatabaseMakeMigrations
-	GamesRepository repository.GamesRepository
-	GamesService    service.GamesService
-	GamesHandler    handler.GamesHandler
+	Config                  Config
+	DB                      *gorm.DB
+	Migration               migrations.DatabaseMakeMigrations
+	GamesRepository         repository.GamesRepository
+	ParticipatingRepository repository.ParticipatingRepository
+	GamesService            service.GamesService
+	ParticipatingService    service.ParticipatingService
+	GamesHandler            handler.GamesHandler
+	ParticipatingHandler    handler.ParticipatingHandler
 }
 
 func NewContainerDI(config Config) *ContainerDI {
@@ -44,12 +47,15 @@ func NewContainerDI(config Config) *ContainerDI {
 
 func (c *ContainerDI) buildRepository() {
 	c.GamesRepository = repository.NewUserRepository(c.DB)
+	c.ParticipatingRepository = repository.NewParticipatingRepository(c.DB)
 }
 func (c *ContainerDI) buildService() {
 	c.GamesService = service.NewGamesService(c.GamesRepository)
+	c.ParticipatingService = service.NewParticipatingService(c.ParticipatingRepository)
 }
 func (c *ContainerDI) buildHandler() {
 	c.GamesHandler = handler.NewGamesHandler(c.GamesService)
+	c.ParticipatingHandler = handler.NewParticipatingHandler(c.ParticipatingService)
 }
 
 func (c *ContainerDI) build()    {}
