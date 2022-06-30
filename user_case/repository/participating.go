@@ -29,6 +29,17 @@ func (p ParticipatingRepository) ListParticipating(UserID, TypeGame string) (lis
 		var row entities.ParticipatingByUser
 		result.Scan(
 			&row.ID,
+			&row.Name,
+			&row.FormattedDate,
+			&row.StartDate,
+			&row.EndDate,
+			&row.EndGame,
+			&row.State,
+			&row.Photo,
+			&row.TypeGame,
+			&row.PointsGG,
+			&row.ParticipatingID,
+			&row.Nick,
 		)
 		list = append(list, row)
 	}
