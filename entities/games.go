@@ -6,7 +6,6 @@ import (
 
 type ListGames struct {
 	ID            string    `json:"id"`
-	UUID          string    `json:"uuid"`
 	Name          string    `json:"name"`
 	FormattedDate string    `json:"formatted_date"`
 	StartData     time.Time `json:"start_date"`
@@ -15,4 +14,5 @@ type ListGames struct {
 	State         int       `json:"state"`
 	Photo         string    `json:"photo"`
 	TypeGame      int       `json:"type_game"`
+	PointsGG      int       `json:"points_gg"`
 }

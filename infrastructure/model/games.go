@@ -7,7 +7,6 @@ import (
 
 type GamesModel struct {
 	ID            string    `gorm:"PrimaryKey"`
-	UUID          string    `gorm:"unique"`
 	Name          string    `gorm:"column:name"`
 	FormattedDate string    `gorm:"column:formatted_date"`
 	StartData     time.Time `gorm:"column:start_date"`
@@ -16,6 +15,7 @@ type GamesModel struct {
 	State         int       `gorm:"column:state"`
 	Photo         string    `gorm:"column:photo"`
 	TypeGame      int       `gorm:"column:type_game"`
+	PointsGG      int       `gorm:"column:points_gg"`
 }
 
 func (ref *GamesModel) TableName() string {
@@ -25,7 +25,6 @@ func (ref *GamesModel) TableName() string {
 func (ref GamesModel) ToDomain() entities.ListGames {
 	return entities.ListGames{
 		ID:            ref.ID,
-		UUID:          ref.UUID,
 		Name:          ref.Name,
 		FormattedDate: ref.FormattedDate,
 		StartData:     ref.StartData,
@@ -34,5 +33,6 @@ func (ref GamesModel) ToDomain() entities.ListGames {
 		State:         ref.State,
 		Photo:         ref.Photo,
 		TypeGame:      ref.TypeGame,
+		PointsGG:      ref.PointsGG,
 	}
 }

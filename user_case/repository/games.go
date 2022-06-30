@@ -30,7 +30,6 @@ func (g GamesRepository) ListGames() ([]entities.ListGames, error) {
 		var row model.GamesModel
 		result.Scan(
 			&row.ID,
-			&row.UUID,
 			&row.Name,
 			&row.FormattedDate,
 			&row.StartData,
@@ -39,6 +38,7 @@ func (g GamesRepository) ListGames() ([]entities.ListGames, error) {
 			&row.State,
 			&row.Photo,
 			&row.TypeGame,
+			&row.PointsGG,
 		)
 		list = append(list, row.ToDomain())
 	}

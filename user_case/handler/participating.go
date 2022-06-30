@@ -1,8 +1,12 @@
 package handler
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"ssVenus/entities"
+)
 
 type ParticipatingService interface {
+	List(idUser, typeGame, tokenUser string) ([]entities.ParticipatingByUser, error)
 }
 
 type ParticipatingHandler struct {
@@ -14,5 +18,9 @@ func NewParticipatingHandler(ParticipatingService ParticipatingService) Particip
 }
 
 func (p ParticipatingHandler) ListParticipating(c *fiber.Ctx) error {
-	return c.Status(fiber.StatusOK).JSON("success")
+	idUser := c.Params("idUser")
+	typeGame := c.Params("typeGame")
+	tokenUser := c.Params("tokenUser")
+	result, _ := p.ParticipatingService.List(idUser, typeGame, tokenUser)
+	return c.Status(fiber.StatusOK).JSON(result)
 }
