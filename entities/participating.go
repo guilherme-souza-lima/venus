@@ -2,6 +2,12 @@ package entities
 
 import "time"
 
+type Participating struct {
+	UserID string `json:"user_id"`
+	GameID string `json:"game_id"`
+	Nick   string `json:"nick"`
+}
+
 type ParticipatingByUser struct {
 	ID              string    `json:"id"`
 	Name            string    `json:"name"`

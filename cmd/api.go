@@ -31,10 +31,9 @@ func StartHttp(ctx context.Context, containerDI *infrastructure.ContainerDI) {
 		AllowHeaders: "*",
 	}))
 
+	app.Post("/create/participating", containerDI.ParticipatingHandler.CreateParticipating)
 	app.Get("/list/games", containerDI.GamesHandler.ListGames)
-
 	app.Get("/list/participating/:idUser/:typeGame/:tokenUser", containerDI.ParticipatingHandler.ListParticipating)
-
 	err := app.Listen(":8080")
 	if err != nil {
 		panic(err)

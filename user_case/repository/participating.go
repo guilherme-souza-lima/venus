@@ -14,6 +14,16 @@ func NewParticipatingRepository(db *gorm.DB) ParticipatingRepository {
 	return ParticipatingRepository{db}
 }
 
+func (p ParticipatingRepository) CreateParticipating(data entities.Participating) error {
+	var entity model.ParticipatingModel
+	entity.FromDomain(data)
+	result := p.db.Create(&entity)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
 func (p ParticipatingRepository) ListParticipating(UserID, TypeGame string) (list []entities.ParticipatingByUser, err error) {
 	var entity model.GamesModel
 	filter := p.db.Model(&entity).
